@@ -4,6 +4,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class SimulationPanel extends JPanel implements MouseListener {
+    private final int worldHeight = 5000;
+    private final int cubeSize = 50;
+    private final int deadSpace = 50;
     Cube cube;
 
     public SimulationPanel() {
@@ -14,17 +17,22 @@ public class SimulationPanel extends JPanel implements MouseListener {
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
         if (cube != null) {
-            IO.println("Cube made");
             g.drawRect(cube.getX(), cube.getY(), cube.getWidth(), cube.getHeight());
-            g.setColor(Color.black);
+            g.setColor(Color.blue);
             g.fillRect(cube.getX(), cube.getY(), cube.getWidth(), cube.getHeight());
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        cube = new Cube(e.getX(), e.getY(), 100, 100);
-        this.repaint();
+        IO.println("panel height: " + this.getHeight());
+        if (e.getY() >= this.deadSpace / 2 &&
+                e.getY() <= this.getHeight() - this.deadSpace / 2 - this.cubeSize &&
+                e.getX() <= this.getWidth() - this.deadSpace / 2 - this.cubeSize) {
+            cube = new Cube(e.getX(), e.getY(), this.cubeSize, this.cubeSize);
+            IO.println(e.getX() + " " + e.getY());
+            this.repaint();
+        }
     }
 
     @Override
