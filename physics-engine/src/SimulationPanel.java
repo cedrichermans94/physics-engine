@@ -4,13 +4,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class SimulationPanel extends JPanel implements MouseListener {
-    private final int worldHeight = 5000;
-    private final int cubeSize = 50;
-    private final int deadSpace = 50;
+    public static final float worldHeight = 5000;
+    public static final int cubeSize = 50;
+    private float worldScale = 0;
     Cube cube;
 
     public SimulationPanel() {
-        //cube = new Cube(100,100,100,100);
+
+    }
+
+    public void recalculateScale() {
+        this.worldScale = this.getHeight() / worldHeight;
+        IO.println(worldScale);
     }
 
     @Override
@@ -25,11 +30,11 @@ public class SimulationPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        IO.println("panel height: " + this.getHeight());
-        if (e.getY() >= this.deadSpace / 2 &&
-                e.getY() <= this.getHeight() - this.deadSpace / 2 - this.cubeSize &&
-                e.getX() <= this.getWidth() - this.deadSpace / 2 - this.cubeSize) {
-            cube = new Cube(e.getX(), e.getY(), this.cubeSize, this.cubeSize);
+        int deadSpace = 50;
+        if (e.getY() >= deadSpace / 2 &&
+                e.getY() <= this.getHeight() - deadSpace / 2 - cubeSize &&
+                e.getX() <= this.getWidth() - deadSpace / 2 - cubeSize) {
+            cube = new Cube(e.getX(), e.getY(), cubeSize, cubeSize);
             IO.println(e.getX() + " " + e.getY());
             this.repaint();
         }

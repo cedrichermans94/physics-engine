@@ -53,6 +53,7 @@ void main() {
     simulationPanel.setBorder(new CompoundBorder(outside, inside));
     mainPanel.add(simulationPanel, BorderLayout.CENTER);
     simulationPanel.addMouseListener(simulationPanel);
+    simulationPanel.addComponentListener(new ResizeListener(simulationPanel));
 
     // finalize frame
     frame.setContentPane(mainPanel);
