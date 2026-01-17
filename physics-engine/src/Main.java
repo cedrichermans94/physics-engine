@@ -16,6 +16,7 @@ void main() {
     frame.setSize(width, height);
     frame.setTitle("Physics Engine - Mk I");
     frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    frame.setVisible(true);
 
     // Setting up main panel
     JPanel mainPanel = new JPanel(new BorderLayout());
@@ -53,10 +54,9 @@ void main() {
     simulationPanel.setBorder(new CompoundBorder(outside, inside));
     mainPanel.add(simulationPanel, BorderLayout.CENTER);
     simulationPanel.addMouseListener(simulationPanel);
-    simulationPanel.addComponentListener(new ResizeListener(simulationPanel));
 
     // finalize frame
     frame.setContentPane(mainPanel);
+    frame.setResizable(false);
     frame.pack();
-    frame.setVisible(true);
 }

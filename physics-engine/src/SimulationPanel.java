@@ -5,24 +5,18 @@ import java.awt.event.MouseListener;
 
 public class SimulationPanel extends JPanel implements MouseListener {
     public static final float worldHeight = 5000;
-    public static final int cubeSize = 50;
-    private float worldScale = 0;
+    public static final int cubeSize = 100;
     Cube cube;
 
     public SimulationPanel() {
 
     }
 
-    public void recalculateScale() {
-        this.worldScale = this.getHeight() / worldHeight;
-        IO.println(worldScale);
-    }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
         if (cube != null) {
-            g.drawRect(cube.getX(), cube.getY(), cube.getWidth(), cube.getHeight());
+            g.drawRect(cube.getX(), cube.getY(), cube.getWidth(),cube.getHeight());
             g.setColor(Color.blue);
             g.fillRect(cube.getX(), cube.getY(), cube.getWidth(), cube.getHeight());
         }
@@ -35,7 +29,6 @@ public class SimulationPanel extends JPanel implements MouseListener {
                 e.getY() <= this.getHeight() - deadSpace / 2 - cubeSize &&
                 e.getX() <= this.getWidth() - deadSpace / 2 - cubeSize) {
             cube = new Cube(e.getX(), e.getY(), cubeSize, cubeSize);
-            IO.println(e.getX() + " " + e.getY());
             this.repaint();
         }
     }
