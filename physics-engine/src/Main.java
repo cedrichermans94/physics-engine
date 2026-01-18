@@ -40,7 +40,7 @@ void main() {
     JLabel explanationLabel = new JLabel("", SwingConstants.CENTER);
     explanationLabel.setText("<html>" +
             "Click anywhere on the simulation panel to generate a cube that falls in a vacuum at Earth's gravity.<br> " +
-            "The maximum height of the simulation panel is 5 kilometer and the cube has a size of 5 meters.");
+            "The maximum height of the simulation panel is 5 kilometer and the cube has a size of 100 meters.");
     explanationLabel.setPreferredSize(new Dimension(frame.getWidth() - infoHeight,50));
     explanationLabel.setOpaque(true);
     explanationLabel.setBackground(Color.BLUE);
@@ -59,4 +59,7 @@ void main() {
     frame.setContentPane(mainPanel);
     frame.setResizable(false);
     frame.pack();
+
+    // init simulation
+    simulationPanel.init();
 }

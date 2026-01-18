@@ -4,12 +4,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class SimulationPanel extends JPanel implements MouseListener {
-    public static final float worldHeight = 5000;
-    public static final int cubeSize = 100;
+    private static final float worldHeight = 5000;
+    private static final float cubeSize = 100;
+    private float meterPerPixel = 0;
+    private float scaledCubeSize = 0;
     Cube cube;
 
     public SimulationPanel() {
 
+    }
+
+    public void init() {
+        meterPerPixel = worldHeight / this.getHeight();
+        scaledCubeSize = cubeSize / meterPerPixel;
+        IO.println(scaledCubeSize);
     }
 
     @Override
@@ -24,11 +32,13 @@ public class SimulationPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        IO.println("doe iets");
         int deadSpace = 50;
         if (e.getY() >= deadSpace / 2 &&
-                e.getY() <= this.getHeight() - deadSpace / 2 - cubeSize &&
-                e.getX() <= this.getWidth() - deadSpace / 2 - cubeSize) {
-            cube = new Cube(e.getX(), e.getY(), cubeSize, cubeSize);
+                e.getY() <= this.getHeight() - deadSpace / 2 - scaledCubeSize &&
+                e.getX() <= this.getWidth() - deadSpace / 2 - scaledCubeSize) {
+            cube = new Cube(e.getX(), e.getY(), (int)scaledCubeSize, (int)scaledCubeSize);
+            IO.println(cube.getWidth());
             this.repaint();
         }
     }
