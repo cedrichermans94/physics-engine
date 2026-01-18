@@ -36,6 +36,7 @@ public class SimulationPanel extends JPanel implements MouseListener {
         int deadSpace = 50;
         if (e.getY() >= deadSpace / 2 &&
                 e.getY() <= this.getHeight() - deadSpace / 2 - scaledCubeSize &&
+                e.getX() >= deadSpace / 2 &&
                 e.getX() <= this.getWidth() - deadSpace / 2 - scaledCubeSize) {
             cube = new Cube(e.getX(), e.getY(), (int)scaledCubeSize, (int)scaledCubeSize);
             IO.println(cube.getWidth());
