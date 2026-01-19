@@ -19,6 +19,10 @@ public class Cube {
         return  this.y;
     }
 
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public int getWidth() {
         return this.width;
     }
@@ -27,11 +31,11 @@ public class Cube {
         this.width = width;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public int getHeight() {
         return this.height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

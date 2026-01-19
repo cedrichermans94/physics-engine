@@ -62,4 +62,20 @@ void main() {
 
     // init simulation
     simulationPanel.init();
+
+    // start simulation
+    simulationPanel.start();
+    long previousTime = System.currentTimeMillis();
+    long wait = 0;
+    while (simulationPanel.isStarted()) {
+        long currentTime = System.currentTimeMillis();
+        long deltaTime = currentTime - previousTime;
+        previousTime = currentTime;
+        wait += deltaTime;
+        while (wait >= 1000/60) {
+            simulationPanel.update();
+            simulationPanel.repaint();
+            wait = 0;
+        }
+    }
 }
