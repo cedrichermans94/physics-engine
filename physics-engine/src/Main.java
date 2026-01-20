@@ -64,7 +64,8 @@ void main() {
     simulationPanel.init();
 
     // start simulation
-    simulationPanel.start();
+    int ups = 60;
+    simulationPanel.start(1000/ups);
     long previousTime = System.currentTimeMillis();
     long wait = 0;
     while (simulationPanel.isStarted()) {
@@ -72,8 +73,8 @@ void main() {
         long deltaTime = currentTime - previousTime;
         previousTime = currentTime;
         wait += deltaTime;
-        while (wait >= 1000/60) {
-            simulationPanel.update();
+        while (wait >= 1000/ups) {
+            simulationPanel.update(wait);
             simulationPanel.repaint();
             wait = 0;
         }
