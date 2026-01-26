@@ -7,10 +7,9 @@ public class SimulationPanel extends JPanel implements MouseListener {
     private static final float worldHeight = 5000;
     private static final float cubeSize = 100;
     private static final double gravity = 9.80665;
+    private float meterPerPixel = 0;
     private float scaledCubeSize = 0;
     private boolean isStarted = false;
-    private double msUp;
-    private float totalMsTime;
     Cube cube;
     private float velocity;
 
@@ -19,20 +18,16 @@ public class SimulationPanel extends JPanel implements MouseListener {
     }
 
     public void init() {
-        float meterPerPixel = worldHeight / this.getHeight();
+        meterPerPixel = worldHeight / this.getHeight();
         scaledCubeSize = cubeSize / meterPerPixel;
     }
 
-    public void start(int msUp) {
+    public void start() {
         this.isStarted = true;
-        this.msUp = msUp;
-        this.totalMsTime = 0;
         this.velocity = 0;
     }
 
     public void stop() {
-        this.msUp = 0;
-        this.totalMsTime = 0;
         this.velocity = 0;
     }
 
@@ -45,7 +40,6 @@ public class SimulationPanel extends JPanel implements MouseListener {
             if (cube.getY() >= this.getHeight() - 25 - scaledCubeSize) {
                 this.stop();
             } else {
-                totalMsTime += delta;
                 velocity += (float) (gravity * delta / 1000);
                 float newPosition = cube.getRelativePosition() - velocity * delta / 1000;
                 cube.setRelativePosition(newPosition);
@@ -58,24 +52,26 @@ public class SimulationPanel extends JPanel implements MouseListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
+        if (meterPerPixel != (worldHeight / this.getHeight())) {
+            this.init();
+        }
         if (cube != null) {
-            g.drawRect(cube.getX(), cube.getY(), cube.getWidth(),cube.getHeight());
+            g.drawRect(cube.getX(), cube.getY(), (int) scaledCubeSize, (int)scaledCubeSize);
             g.setColor(Color.blue);
-            g.fillRect(cube.getX(), cube.getY(), cube.getWidth(), cube.getHeight());
+            g.fillRect(cube.getX(), cube.getY(), (int) scaledCubeSize, (int)scaledCubeSize);
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        totalMsTime = 0;
         velocity = 0;
         int deadSpace = 50;
         if (e.getY() >= deadSpace / 2 &&
-                e.getY() <= this.getHeight() - deadSpace / 2 - scaledCubeSize &&
+                e.getY() <= this.getHeight() - (float) deadSpace / 2 - scaledCubeSize &&
                 e.getX() >= deadSpace / 2 &&
-                e.getX() <= this.getWidth() - deadSpace / 2 - scaledCubeSize) {
-            float relativePosition = worldHeight - ((float) e.getY() / (this.getHeight() - deadSpace / 2 - scaledCubeSize)) * worldHeight;
-            cube = new Cube(e.getX(), e.getY(), (int) scaledCubeSize, (int) scaledCubeSize, relativePosition);
+                e.getX() <= this.getWidth() - (float) deadSpace / 2 - scaledCubeSize) {
+            float relativePosition = worldHeight - ((float) e.getY() / (this.getHeight() - (float) deadSpace / 2 - scaledCubeSize)) * worldHeight;
+            cube = new Cube(e.getX(), e.getY(), relativePosition);
             this.repaint();
         }
     }

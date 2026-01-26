@@ -9,11 +9,14 @@ import java.awt.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
     // Setting up JFrame
+    System.setProperty( "apple.awt.application.name", "Physics Engine - Mk I" );
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
     int infoHeight = 100;
+    int infoWidth = 100;
     JFrame frame = new JFrame();
     frame.setSize(width, height);
+    frame.setMinimumSize(new Dimension(800,400));
     frame.setTitle("Physics Engine - Mk I");
     frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     frame.setVisible(true);
@@ -24,28 +27,28 @@ void main() {
 
     // Setting up information panel
     JPanel infoPanel = new JPanel(new BorderLayout());
-    infoPanel.setPreferredSize(new Dimension(frame.getWidth(), infoHeight));
+    //infoPanel.setPreferredSize(new Dimension(frame.getWidth(), infoHeight));
     mainPanel.add(infoPanel, BorderLayout.NORTH);
 
     // Setting up icon on left
-    ImageIcon icon = new ImageIcon(this.getClass().getResource("/img/icon.png"));
+    ImageIcon icon = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/img/icon.png")));
     Image image = icon.getImage();
-    Image scaledImage = image.getScaledInstance(infoHeight, infoHeight, Image.SCALE_SMOOTH);
+    Image scaledImage = image.getScaledInstance(infoWidth, infoHeight, Image.SCALE_SMOOTH);
     ImageIcon scaledIcon = new ImageIcon(scaledImage);
     JLabel iconLabel = new JLabel(scaledIcon);
-    iconLabel.setPreferredSize(new Dimension(infoHeight,infoHeight));
+    iconLabel.setPreferredSize(new Dimension(infoWidth,infoHeight));
     infoPanel.add(iconLabel, BorderLayout.WEST);
 
     // Setting up info label on right
     JLabel explanationLabel = new JLabel("", SwingConstants.CENTER);
     explanationLabel.setText("<html>" +
-            "Click anywhere on the simulation panel to generate a cube that falls in a vacuum at Earth's gravity.<br> " +
-            "The maximum height of the simulation panel is 5 kilometer and the cube has a size of 100 meters.");
-    explanationLabel.setPreferredSize(new Dimension(frame.getWidth() - infoHeight,50));
+            "Click anywhere on the simulation panel to generate a cube that falls in a vacuum under Earth's gravity.<br> " +
+            "The maximum height of the simulation panel is 5 kilometers and the cube has a size of 100 meters.");
+    //explanationLabel.setPreferredSize(new Dimension(frame.getWidth() - infoWidth,infoHeight));
     explanationLabel.setOpaque(true);
     explanationLabel.setBackground(Color.BLUE);
     explanationLabel.setForeground(Color.WHITE);
-    infoPanel.add(explanationLabel, BorderLayout.EAST);
+    infoPanel.add(explanationLabel, BorderLayout.CENTER);
 
     // Setting up simulation panel
     SimulationPanel simulationPanel = new SimulationPanel();
@@ -57,7 +60,6 @@ void main() {
 
     // finalize frame
     frame.setContentPane(mainPanel);
-    frame.setResizable(false);
     frame.pack();
 
     // init simulation
@@ -65,7 +67,7 @@ void main() {
 
     // start simulation
     int ups = 60;
-    simulationPanel.start(1000/ups);
+    simulationPanel.start();
     long previousTime = System.currentTimeMillis();
     long wait = 0;
     while (simulationPanel.isStarted()) {
