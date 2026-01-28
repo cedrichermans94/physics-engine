@@ -7,7 +7,7 @@ import java.awt.*;
 import java.util.Objects;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         // Setting up JFrame
         System.setProperty( "apple.awt.application.name", "Physics Engine - Mk I" );
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -18,7 +18,7 @@ public class Main {
         frame.setSize(width, height);
         frame.setMinimumSize(new Dimension(800,400));
         frame.setTitle("Physics Engine - Mk I");
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
         // Setting up main panel

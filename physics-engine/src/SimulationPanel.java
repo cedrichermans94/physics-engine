@@ -51,7 +51,7 @@ public class SimulationPanel extends JPanel implements MouseListener {
 
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponents(g);
+        super.paintComponent(g);
         if (meterPerPixel != (worldHeight / this.getHeight())) {
             this.init();
         }
@@ -72,7 +72,6 @@ public class SimulationPanel extends JPanel implements MouseListener {
                 e.getX() <= this.getWidth() - (float) deadSpace / 2 - scaledCubeSize) {
             float relativePosition = worldHeight - ((float) e.getY() / (this.getHeight() - (float) deadSpace / 2 - scaledCubeSize)) * worldHeight;
             cube = new Cube(e.getX(), e.getY(), relativePosition);
-            this.repaint();
         }
     }
 
