@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Main {
     static void main() {
         // Setting up JFrame
-        System.setProperty( "apple.awt.application.name", "Physics Engine - Mk I" );
+        System.setProperty( "apple.awt.application.name", "Physics Engine - Mk II" );
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
         int height = Toolkit.getDefaultToolkit().getScreenSize().height;
         int infoHeight = 100;
@@ -31,7 +31,7 @@ public class Main {
         mainPanel.add(infoPanel, BorderLayout.NORTH);
 
         // Setting up icon on left
-        ImageIcon icon = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/img/icon.png")));
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/img/icon2.png")));
         Image image = icon.getImage();
         Image scaledImage = image.getScaledInstance(infoWidth, infoHeight, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);

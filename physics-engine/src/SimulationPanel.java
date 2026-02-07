@@ -6,9 +6,11 @@ import java.awt.event.MouseListener;
 public class SimulationPanel extends JPanel implements MouseListener {
     private static final float worldHeight = 5000;
     private static final float cubeSize = 100;
+    private static final int cubeDensity = 7847;
     private static final double gravity = 9.80665;
     private float meterPerPixel = 0;
     private float scaledCubeSize = 0;
+    private float cubeMassa = 0;
     private boolean isStarted = false;
     Cube cube;
     private float velocity;
@@ -20,6 +22,7 @@ public class SimulationPanel extends JPanel implements MouseListener {
     public void init() {
         meterPerPixel = worldHeight / this.getHeight();
         scaledCubeSize = cubeSize / meterPerPixel;
+        cubeMassa = cubeSize * cubeSize * cubeSize * cubeDensity;
     }
 
     public void start() {
