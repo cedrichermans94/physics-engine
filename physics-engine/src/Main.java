@@ -21,14 +21,27 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+        // Setting up root panel
+        JPanel rootPanel = new JPanel(new BorderLayout());
+        rootPanel.setPreferredSize(frame.getSize());
+
+        // Setting up info panel
+        JPanel infoPanel = new JPanel(new BorderLayout());
+        infoPanel.setPreferredSize(new Dimension(300, frame.getHeight()));
+        infoPanel.setBackground(Color.DARK_GRAY);
+        JLabel infoLabel = new JLabel("Variables");
+        infoLabel.setForeground(Color.WHITE);
+        infoPanel.add(infoLabel);
+        rootPanel.add(infoPanel, BorderLayout.EAST);
+
         // Setting up main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setPreferredSize(frame.getSize());
 
-        // Setting up information panel
-        JPanel infoPanel = new JPanel(new BorderLayout());
+        // Setting up head panel
+        JPanel headPanel = new JPanel(new BorderLayout());
         //infoPanel.setPreferredSize(new Dimension(frame.getWidth(), infoHeight));
-        mainPanel.add(infoPanel, BorderLayout.NORTH);
+        mainPanel.add(headPanel, BorderLayout.NORTH);
 
         // Setting up icon on left
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(Main.class.getResource("/img/icon2.png")));
@@ -37,18 +50,17 @@ public class Main {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel iconLabel = new JLabel(scaledIcon);
         iconLabel.setPreferredSize(new Dimension(infoWidth,infoHeight));
-        infoPanel.add(iconLabel, BorderLayout.WEST);
+        headPanel.add(iconLabel, BorderLayout.WEST);
 
         // Setting up info label on right
         JLabel explanationLabel = new JLabel("", SwingConstants.CENTER);
         explanationLabel.setText("<html>" +
                 "Click anywhere on the simulation panel to generate a cube that falls in a vacuum under Earth's gravity.<br> " +
                 "The maximum height of the simulation panel is 5 kilometers and the cube has a size of 100 meters.");
-        //explanationLabel.setPreferredSize(new Dimension(frame.getWidth() - infoWidth,infoHeight));
         explanationLabel.setOpaque(true);
         explanationLabel.setBackground(Color.BLUE);
         explanationLabel.setForeground(Color.WHITE);
-        infoPanel.add(explanationLabel, BorderLayout.CENTER);
+        headPanel.add(explanationLabel, BorderLayout.CENTER);
 
         // Setting up simulation panel
         SimulationPanel simulationPanel = new SimulationPanel();
@@ -59,7 +71,8 @@ public class Main {
         simulationPanel.addMouseListener(simulationPanel);
 
         // finalize frame
-        frame.setContentPane(mainPanel);
+        rootPanel.add(mainPanel, BorderLayout.CENTER);
+        frame.setContentPane(rootPanel);
         frame.pack();
 
         // init simulation
