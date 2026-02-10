@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.Objects;
 
 public class Main {
+    private static JLabel heightLabel;
+    private static SimulationPanel simulationPanel;
+
     static void main() {
         // Setting up JFrame
         System.setProperty( "apple.awt.application.name", "Physics Engine - Mk II" );
@@ -24,15 +27,6 @@ public class Main {
         // Setting up root panel
         JPanel rootPanel = new JPanel(new BorderLayout());
         rootPanel.setPreferredSize(frame.getSize());
-
-        // Setting up info panel
-        JPanel infoPanel = new JPanel(new BorderLayout());
-        infoPanel.setPreferredSize(new Dimension(300, frame.getHeight()));
-        infoPanel.setBackground(Color.DARK_GRAY);
-        JLabel infoLabel = new JLabel("Variables");
-        infoLabel.setForeground(Color.WHITE);
-        infoPanel.add(infoLabel);
-        rootPanel.add(infoPanel, BorderLayout.EAST);
 
         // Setting up main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -63,12 +57,21 @@ public class Main {
         headPanel.add(explanationLabel, BorderLayout.CENTER);
 
         // Setting up simulation panel
-        SimulationPanel simulationPanel = new SimulationPanel();
+        simulationPanel = new SimulationPanel();
         Border inside = new LineBorder(Color.BLACK, 5);
         Border outside = new EmptyBorder(20,20,20,20);
         simulationPanel.setBorder(new CompoundBorder(outside, inside));
         mainPanel.add(simulationPanel, BorderLayout.CENTER);
         simulationPanel.addMouseListener(simulationPanel);
+
+        // Setting up info panel
+        JPanel infoPanel = new JPanel(new BorderLayout());
+        infoPanel.setPreferredSize(new Dimension(300, frame.getHeight()));
+        infoPanel.setBackground(Color.DARK_GRAY);
+        heightLabel = new JLabel("Height: " + simulationPanel.getRelativeHeight());
+        heightLabel.setForeground(Color.WHITE);
+        infoPanel.add(heightLabel);
+        rootPanel.add(infoPanel, BorderLayout.EAST);
 
         // finalize frame
         rootPanel.add(mainPanel, BorderLayout.CENTER);
@@ -91,8 +94,13 @@ public class Main {
             while (wait >= 1000/ups) {
                 simulationPanel.update(wait);
                 simulationPanel.repaint();
+                updateInfo();
+                infoPanel.repaint();
                 wait = 0;
             }
         }
+    }
+    private static void updateInfo() {
+        heightLabel.setText("Height: " + simulationPanel.getRelativeHeight());
     }
 }

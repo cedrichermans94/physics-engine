@@ -97,4 +97,11 @@ public class SimulationPanel extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    public float getRelativeHeight() {
+        if (cube != null) {
+            return cube.getRelativePosition();
+        }
+        return 0;
+    }
 }
