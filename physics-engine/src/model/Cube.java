@@ -1,3 +1,5 @@
+package model;
+
 public class Cube {
     private final int x;
     private int y;
