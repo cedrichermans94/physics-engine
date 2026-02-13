@@ -25,7 +25,7 @@ public class RootView extends JFrame {
 
         headerView = new HeaderView(this);
         simulationView = new SimulationView(this, simulation);
-        infoView = new InfoView(this);
+        infoView = new InfoView(this, simulation);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, simulationView, infoView);
         splitPane.setResizeWeight(1);
@@ -48,6 +48,7 @@ public class RootView extends JFrame {
 
     public void render() {
         this.simulationView.repaint();
+        this.infoView.repaint();
     }
 
     public SimulationView getSimulationView() {
