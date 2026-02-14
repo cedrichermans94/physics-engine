@@ -33,7 +33,7 @@ public class Controller {
                         e.getX() >= deadSpace / 2 &&
                         e.getX() <= view.getSimulationView().getWidth() - (float) deadSpace / 2 - simulation.getScaledCubeSize()) {
                     float relativePosition = simulation.getWorldHeight() - ((float) e.getY() / (view.getSimulationView().getHeight() - (float) deadSpace / 2 - simulation.getScaledCubeSize())) * simulation.getWorldHeight();
-                    simulation.setCube(new Cube(e.getX(), e.getY(), relativePosition));
+                    simulation.setCube(new Cube(e.getX(), e.getY(), simulation.getCubeSize(), relativePosition));
                 }
             }
 

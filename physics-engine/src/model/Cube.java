@@ -3,12 +3,17 @@ package model;
 public class Cube {
     private final int x;
     private int y;
+    private float size;
     private float relativePosition;
+    private final int density = 7847;
+    private float mass;
 
-    public Cube (int x, int y, float relativePosition) {
+    public Cube (int x, int y, float size, float relativePosition) {
         this.x = x;
         this.y = y;
+        this.size = size;
         this.relativePosition = relativePosition;
+        this.mass = size * size * size * density;
     }
 
     public int getX() {
@@ -29,5 +34,9 @@ public class Cube {
 
     public void setRelativePosition(float relativePosition) {
         this.relativePosition = relativePosition;
+    }
+
+    public float getMass() {
+        return this.mass;
     }
 }

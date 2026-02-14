@@ -4,13 +4,11 @@ public class Simulation {
 
     private final float worldHeight = 5000;
     private static final float cubeSize = 100;
-    private static final int cubeDensity = 7847;
     private static final double gravity = 9.80665;
     private float meterPerPixel = 0;
     private float scaledCubeSize = 0;
-    private float cubeMassa = 0;
     private boolean isStarted = false;
-    Cube cube;
+    private Cube cube;
     private float velocity;
     private int panelHeight;
 
@@ -22,7 +20,6 @@ public class Simulation {
         this.panelHeight = panelHeight;
         meterPerPixel = worldHeight / panelHeight;
         scaledCubeSize = cubeSize / meterPerPixel;
-        cubeMassa = cubeSize * cubeSize * cubeSize * cubeDensity;
     }
 
     public void start() {
@@ -32,6 +29,7 @@ public class Simulation {
 
     public void stop() {
         this.velocity = 0;
+        this.cube.setRelativePosition(0);
     }
 
     public boolean isStarted() {
@@ -79,15 +77,22 @@ public class Simulation {
         return this.scaledCubeSize;
     }
 
-    public int getPanelHeight() {
-        return this.panelHeight;
-    }
-
     public float getVelocity() {
         return this.velocity;
     }
 
     public void setVelocity(float velocity) {
         this.velocity = velocity;
+    }
+
+    public float getCubeSize() {
+        return cubeSize;
+    }
+
+    public float getCubeMass() {
+        if (cube != null) {
+            return this.cube.getMass();
+        }
+        return 0;
     }
 }
