@@ -95,4 +95,8 @@ public class Simulation {
         }
         return 0;
     }
+
+    public double getGravity() {
+        return gravity;
+    }
 }

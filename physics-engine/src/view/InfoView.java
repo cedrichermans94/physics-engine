@@ -9,6 +9,7 @@ public class InfoView extends JPanel {
     private Simulation simulation;
     private JLabel massLabelValue;
     private JLabel heightLabelValue;
+    private JLabel gravityLabelValue;
     private JLabel velocityLabelValue;
 
     public InfoView(RootView rootView, Simulation simulation) {
@@ -27,6 +28,9 @@ public class InfoView extends JPanel {
         JLabel heightLabelText = new JLabel("Height:");
         heightLabelValue = new JLabel("");
 
+        JLabel gravityLabelText = new JLabel("Gravity:");
+        gravityLabelValue = new JLabel("");
+
         JLabel velocityLabelText = new JLabel("Velocity:");
         velocityLabelValue = new JLabel("");
 
@@ -34,6 +38,8 @@ public class InfoView extends JPanel {
         massLabelValue.setForeground(Color.WHITE);
         heightLabelText.setForeground(Color.WHITE);
         heightLabelValue.setForeground(Color.WHITE);
+        gravityLabelText.setForeground(Color.WHITE);
+        gravityLabelValue.setForeground(Color.WHITE);
         velocityLabelText.setForeground(Color.WHITE);
         velocityLabelValue.setForeground(Color.WHITE);
 
@@ -53,6 +59,13 @@ public class InfoView extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 2;
+        add(gravityLabelText, gbc);
+
+        gbc.gridx = 1;
+        add(gravityLabelValue, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         add(velocityLabelText, gbc);
 
         gbc.gridx = 1;
@@ -64,6 +77,7 @@ public class InfoView extends JPanel {
         super.paintComponent(g);
         massLabelValue.setText((int)this.simulation.getCubeMass() + " kg");
         heightLabelValue.setText((int)this.simulation.getRelativeHeight() + " m");
+        gravityLabelValue.setText(this.simulation.getGravity() + " m/s²");
         velocityLabelValue.setText((int)this.simulation.getVelocity() + " m/s");
     }
 }
