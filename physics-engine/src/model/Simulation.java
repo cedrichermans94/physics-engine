@@ -11,6 +11,7 @@ public class Simulation {
     private Cube cube;
     private float velocity;
     private int panelHeight;
+    private double impactEnergy = 0;
 
     public Simulation() {
 
@@ -30,6 +31,8 @@ public class Simulation {
     public void stop() {
         this.velocity = 0;
         this.cube.setRelativePosition(0);
+        this.impactEnergy = this.cube.getMass() * gravity * this.cube.getStartPosition() / 1000000000000L;
+        IO.println(this.cube.getStartPosition());
     }
 
     public boolean isStarted() {
@@ -98,5 +101,9 @@ public class Simulation {
 
     public double getGravity() {
         return gravity;
+    }
+
+    public double getImpactEnergy() {
+        return this.impactEnergy;
     }
 }

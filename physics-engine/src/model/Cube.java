@@ -5,6 +5,7 @@ public class Cube {
     private int y;
     private float size;
     private float relativePosition;
+    private float startPosition;
     private final int density = 7847;
     private float mass;
 
@@ -13,6 +14,7 @@ public class Cube {
         this.y = y;
         this.size = size;
         this.relativePosition = relativePosition;
+        this.startPosition = relativePosition;
         this.mass = size * size * size * density;
     }
 
@@ -38,5 +40,9 @@ public class Cube {
 
     public float getMass() {
         return this.mass;
+    }
+
+    public float getStartPosition() {
+        return this.startPosition;
     }
 }
