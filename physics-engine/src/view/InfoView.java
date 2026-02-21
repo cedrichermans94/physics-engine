@@ -91,7 +91,7 @@ public class InfoView extends JPanel {
         massLabelValue.setText((long)this.simulation.getCubeMass() + " kg");
         heightLabelValue.setText((int)this.simulation.getRelativeHeight() + " m");
         gravityLabelValue.setText(this.simulation.getGravity() + " m/s²");
-        velocityLabelValue.setText((int)this.simulation.getVelocity() + " m/s");
+        velocityLabelValue.setText((int)(this.simulation.getVelocity())+ " m/s");
         impactLabelValue.setText(Math.round(this.simulation.getImpactEnergy()*100.00) / 100.00 + " TJ");
     }
 }

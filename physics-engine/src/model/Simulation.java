@@ -5,6 +5,7 @@ public class Simulation {
     private final float worldHeight = 5000;
     private static final float cubeSize = 100;
     private static final double gravity = 9.80665;
+    private static final double airDensity = 1.293;
     private float meterPerPixel = 0;
     private float scaledCubeSize = 0;
     private boolean isStarted = false;
@@ -12,6 +13,7 @@ public class Simulation {
     private float velocity;
     private int panelHeight;
     private double impactEnergy = 0;
+    private float msTime = 0;
 
     public Simulation() {
 
@@ -32,7 +34,7 @@ public class Simulation {
         this.velocity = 0;
         this.cube.setRelativePosition(0);
         this.impactEnergy = this.cube.getMass() * gravity * this.cube.getStartPosition() / 1000000000000L;
-        IO.println(this.cube.getStartPosition());
+        IO.println(this.cube.getStartPosition() + " and it took " + this.msTime / 1000 + " s");
     }
 
     public boolean isStarted() {
@@ -44,11 +46,14 @@ public class Simulation {
             if (cube.getY() >= panelHeight - 25 - scaledCubeSize) {
                 this.stop();
             } else {
-                velocity += (float) (gravity * delta / 1000);
+                double Fd = 0.5 * airDensity * this.cube.getDragCoefficient() * this.cube.getArea() * velocity * velocity;
+                double a = gravity - Fd / this.cube.getMass();
+                velocity += (float) (a * delta / 1000);
                 float newPosition = cube.getRelativePosition() - velocity * delta / 1000;
                 cube.setRelativePosition(newPosition);
                 int newY = (int) (panelHeight - 25 - scaledCubeSize - (newPosition / worldHeight * (panelHeight - 25 - scaledCubeSize)));
                 cube.setY(newY);
+                msTime += delta;
             }
         }
     }

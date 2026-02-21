@@ -8,6 +8,8 @@ public class Cube {
     private float startPosition;
     private final int density = 7847;
     private float mass;
+    private float area;
+    private final double dragCoefficient = 1.05;
 
     public Cube (int x, int y, float size, float relativePosition) {
         this.x = x;
@@ -16,6 +18,7 @@ public class Cube {
         this.relativePosition = relativePosition;
         this.startPosition = relativePosition;
         this.mass = size * size * size * density;
+        this.area = size * size;
     }
 
     public int getX() {
@@ -44,5 +47,13 @@ public class Cube {
 
     public float getStartPosition() {
         return this.startPosition;
+    }
+
+    public float getArea() {
+        return this.area;
+    }
+
+    public double getDragCoefficient() {
+        return this.dragCoefficient;
     }
 }
