@@ -4,6 +4,9 @@ import model.Cube;
 import model.Simulation;
 import view.RootView;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -49,6 +52,31 @@ public class Controller {
 
             @Override
             public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        this.view.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == 'i') {
+                    if (view.getInfoView().isHidden()) {
+                        view.getInfoSimulationContainer().setDividerLocation(view.getInfoSimulationContainer().getWidth() - 300);
+                        view.getInfoView().setHidden(false);
+                    } else {
+                        view.getInfoSimulationContainer().setDividerLocation(view.getInfoSimulationContainer().getWidth());
+                        view.getInfoView().setHidden(true);
+                    }
+
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
 
             }
         });

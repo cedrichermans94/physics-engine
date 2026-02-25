@@ -12,9 +12,11 @@ public class InfoView extends JPanel {
     private JLabel gravityLabelValue;
     private JLabel velocityLabelValue;
     private JLabel impactLabelValue;
+    private boolean isHidden;
 
     public InfoView(RootView rootView, Simulation simulation) {
         this.simulation = simulation;
+        this.isHidden = false;
         setPreferredSize(new Dimension(300, rootView.getHeight()));
         setBackground(Color.DARK_GRAY);
 
@@ -93,5 +95,13 @@ public class InfoView extends JPanel {
         gravityLabelValue.setText(this.simulation.getGravity() + " m/s²");
         velocityLabelValue.setText((int)(this.simulation.getVelocity())+ " m/s");
         impactLabelValue.setText(Math.round(this.simulation.getImpactEnergy()*100.00) / 100.00 + " TJ");
+    }
+
+    public boolean isHidden() {
+        return this.isHidden;
+    }
+
+    public void setHidden(boolean isHidden) {
+        this.isHidden = isHidden;
     }
 }

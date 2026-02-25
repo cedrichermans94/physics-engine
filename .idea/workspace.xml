@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66706dea-32ac-42e3-ac6e-d332327ffe33" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/physics-engine/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/physics-engine/src/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/physics-engine/src/model/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/physics-engine/src/model/Simulation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physics-engine/src/view/InfoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/physics-engine/src/view/InfoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/physics-engine/src/view/RootView.java" beforeDir="false" afterPath="$PROJECT_DIR$/physics-engine/src/view/RootView.java" afterDir="false" />
     </list>
@@ -69,6 +72,8 @@
       <workItem from="1771014329423" duration="1240000" />
       <workItem from="1771015621857" duration="114000" />
       <workItem from="1771022091423" duration="122000" />
+      <workItem from="1771693029533" duration="2784000" />
+      <workItem from="1772037613945" duration="1345000" />
     </task>
     <servers />
   </component>

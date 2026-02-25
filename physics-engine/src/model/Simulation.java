@@ -13,7 +13,6 @@ public class Simulation {
     private float velocity;
     private int panelHeight;
     private double impactEnergy = 0;
-    private float msTime = 0;
 
     public Simulation() {
 
@@ -34,7 +33,6 @@ public class Simulation {
         this.velocity = 0;
         this.cube.setRelativePosition(0);
         this.impactEnergy = this.cube.getMass() * gravity * this.cube.getStartPosition() / 1000000000000L;
-        IO.println(this.cube.getStartPosition() + " and it took " + this.msTime / 1000 + " s");
     }
 
     public boolean isStarted() {
@@ -53,7 +51,6 @@ public class Simulation {
                 cube.setRelativePosition(newPosition);
                 int newY = (int) (panelHeight - 25 - scaledCubeSize - (newPosition / worldHeight * (panelHeight - 25 - scaledCubeSize)));
                 cube.setY(newY);
-                msTime += delta;
             }
         }
     }

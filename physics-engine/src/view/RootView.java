@@ -12,6 +12,7 @@ public class RootView extends JFrame {
     private Simulation simulation;
 
     private HeaderView headerView;
+    private JSplitPane infoSimulationContainer;
     private SimulationView simulationView;
     private InfoView infoView;
 
@@ -27,14 +28,14 @@ public class RootView extends JFrame {
         simulationView = new SimulationView(this, simulation);
         infoView = new InfoView(this, simulation);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, simulationView, infoView);
-        splitPane.setResizeWeight(1);
-        splitPane.setDividerSize(0);
-        splitPane.setBorder(null);
-        splitPane.setEnabled(false);
+        infoSimulationContainer = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, simulationView, infoView);
+        infoSimulationContainer.setResizeWeight(1);
+        infoSimulationContainer.setDividerSize(0);
+        infoSimulationContainer.setBorder(null);
+        infoSimulationContainer.setEnabled(false);
 
         add(headerView, BorderLayout.NORTH);
-        add(splitPane, BorderLayout.CENTER);
+        add(infoSimulationContainer, BorderLayout.CENTER);
     }
 
     public void init() {
@@ -48,10 +49,20 @@ public class RootView extends JFrame {
 
     public void render() {
         this.simulationView.repaint();
-        this.infoView.repaint();
+        if (!this.infoView.isHidden()) {
+            this.infoView.repaint();
+        }
+    }
+
+    public JSplitPane getInfoSimulationContainer() {
+        return this.infoSimulationContainer;
     }
 
     public SimulationView getSimulationView() {
         return this.simulationView;
+    }
+
+    public  InfoView getInfoView() {
+        return this.infoView;
     }
 }
