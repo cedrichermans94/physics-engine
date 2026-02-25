@@ -4,6 +4,7 @@ import model.Cube;
 import model.Simulation;
 import view.RootView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -59,14 +60,29 @@ public class Controller {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == 'i') {
-                    if (view.getInfoView().isHidden()) {
-                        view.getInfoSimulationContainer().setDividerLocation(view.getInfoSimulationContainer().getWidth() - 300);
-                        view.getInfoView().setHidden(false);
-                    } else {
-                        view.getInfoSimulationContainer().setDividerLocation(view.getInfoSimulationContainer().getWidth());
-                        view.getInfoView().setHidden(true);
-                    }
-
+                    JSplitPane pane = view.getInfoSimulationContainer();
+                    boolean isHidden = view.getInfoView().isHidden();
+                    Timer timer = new Timer(5, null);
+                    timer.addActionListener(e1 -> {
+                        int current = pane.getDividerLocation();
+                        if (isHidden) {
+                            current -= 5;
+                            if (current <= pane.getWidth() - 300) {
+                                current = pane.getWidth() - 300;
+                                timer.stop();
+                                view.getInfoView().setHidden(false);
+                            }
+                        } else {
+                            current += 5;
+                            if (current >= pane.getWidth()) {
+                                current = pane.getWidth();
+                                timer.stop();
+                                view.getInfoView().setHidden(true);
+                            }
+                        }
+                        pane.setDividerLocation(current);
+                    });
+                    timer.start();
                 }
             }
 
