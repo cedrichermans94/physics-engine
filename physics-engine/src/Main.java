@@ -13,6 +13,7 @@ import java.util.Objects;
 public class Main {
 
     static void main() {
+        System.setProperty( "apple.awt.application.name", "Physics Engine - Mk II" );
         // --- CREATE CONTROLLER ---
         Simulation simulation = new Simulation();
         RootView view = new RootView(simulation);

@@ -17,7 +17,6 @@ public class RootView extends JFrame {
     private InfoView infoView;
 
     public RootView(Simulation simulation) {
-        System.setProperty( "apple.awt.application.name", "Physics Engine - Mk II" );
         width = Toolkit.getDefaultToolkit().getScreenSize().width;
         height = Toolkit.getDefaultToolkit().getScreenSize().height;
         this.init();

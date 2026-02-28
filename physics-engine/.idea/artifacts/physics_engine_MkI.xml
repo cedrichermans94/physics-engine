@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="physics-engine-MkI">
-    <output-path>$PROJECT_DIR$/out/artifacts/physics_engine_MkI</output-path>
-    <root id="archive" name="physics-engine-MkI.jar">
-      <element id="module-output" name="physics-engine" />
-    </root>
-  </artifact>
-</component>
